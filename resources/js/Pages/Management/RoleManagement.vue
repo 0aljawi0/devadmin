@@ -11,8 +11,8 @@
                     <card>
                         <template #header>
                             <div class="btn-group">
-                                <button v-on:click="openModalRole" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle fa-lg fa-fw"></i> Add Role</button>
-                                <button v-if="roles.data.length > 0" v-on:click="deleteRoleBulk" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt fa-lg fa-fw"></i> Delete Bulk</button>
+                                <button @click="openModalRole" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle fa-lg fa-fw"></i> Add Role</button>
+                                <button v-if="roles.data.length > 0" @click="deleteRoleBulk" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt fa-lg fa-fw"></i> Delete Bulk</button>
                             </div>
 
                         </template>
@@ -23,7 +23,7 @@
                                     <th width="5%"><i class="fas fa-hashtag fa-sm fa-fw"></i></th>
                                     <th width="70%">Title</th>
                                     <th width="20%">Manages</th>
-                                    <th width="5%"><i class="fas fa-ellipsis-h fa-sm fa-fw"></i></th>
+                                    <th width="5%" class="text-center"><i class="fas fa-ellipsis-h fa-sm fa-fw"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,12 +35,12 @@
                                     </td>
                                     <td>{{item.title}}</td>
                                     <td>
-                                        <button v-on:click="openModalManage(item.manages)"  class="btn btn-secondary btn-sm">Manage Role</button>
+                                        <button @click="openModalManage(item.manages)"  class="btn btn-secondary btn-sm">Manage Role</button>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="btn-group">
-                                            <button v-on:click="openModalRoleUpdate(item)" class="btn btn-outline-primary btn-sm"><i class="fas fa-pencil-alt fa-lg fa-fw"></i></button>
-                                            <button v-on:click="deleteRole(item.id)" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt fa-lg fa-fw"></i></button>
+                                            <button @click="openModalRoleUpdate(item)" class="btn btn-outline-primary btn-sm"><i class="fas fa-pencil-alt fa-lg fa-fw"></i></button>
+                                            <button @click="deleteRole(item.id)" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt fa-lg fa-fw"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -56,149 +56,127 @@
         </div>
 
         <!-- Modal Manages -->
-        <div class="modal fade" id="modalManage" aria-hidden="true" tabindex="-1">
-            <div class="modal-dialog modal-lg modal-dialog-centered ">
-                <div class="modal-content shadow-lg">
-                    <div class="modal-body">
+        <modal id="modalManage">
+            <table v-if="manages.length > 0" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="30%">MENU NAME</th>
+                        <th width="15%" class="text-center">READ</th>
+                        <th width="15%" class="text-center">ADD</th>
+                        <th width="15%" class="text-center">UPDATE</th>
+                        <th width="15%" class="text-center">DELETE</th>
+                        <th width="10%" class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in manages" :key="item.id">
+                        <td class="text-uppercase">{{item.menu}}</td>
+                        <td class="text-uppercase text-center">
+                            <p v-if="item.pivot.read" class="text-success mb-0">
+                                <i class="fas fa-check-circle fa-sm fa-fw"></i>
+                            </p>
+                            <p v-else class="text-danger mb-0">
+                                <i class="fas fa-times-circle fa-sm fa-fw"></i>
+                            </p>
+                        </td>
+                        <td class="text-uppercase text-center">
+                            <p v-if="item.pivot.add" class="text-success mb-0">
+                                <i class="fas fa-check-circle fa-sm fa-fw"></i>
+                            </p>
+                            <p v-else class="text-danger mb-0">
+                                <i class="fas fa-times-circle fa-sm fa-fw"></i>
+                            </p>
+                        </td>
+                        <td class="text-uppercase text-center">
+                            <p v-if="item.pivot.update" class="text-success mb-0">
+                                <i class="fas fa-check-circle fa-sm fa-fw"></i>
+                            </p>
+                            <p v-else class="text-danger mb-0">
+                                <i class="fas fa-times-circle fa-sm fa-fw"></i>
+                            </p>
+                        </td>
+                        <td class="text-uppercase text-center">
+                            <p v-if="item.pivot.delete" class="text-success mb-0">
+                                <i class="fas fa-check-circle fa-sm fa-fw"></i>
+                            </p>
+                            <p v-else class="text-danger mb-0">
+                                <i class="fas fa-times-circle fa-sm fa-fw"></i>
+                            </p>
+                        </td>
+                        <td>
+                            <button @click="openModalManageForm(item)" class="btn btn-sm btn-outline-primary"><i class="fas fa-pen-alt fa-lg fa-fw"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-                        <table v-if="manages.length > 0" class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th width="30%">MENU NAME</th>
-                                    <th width="15%" class="text-center">READ</th>
-                                    <th width="15%" class="text-center">ADD</th>
-                                    <th width="15%" class="text-center">UPDATE</th>
-                                    <th width="15%" class="text-center">DELETE</th>
-                                    <th width="10%" class="text-center"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="item in manages" :key="item.id">
-                                    <td class="text-uppercase">{{item.menu}}</td>
-                                    <td class="text-uppercase text-center">
-                                        <p v-if="item.pivot.read" class="text-success mb-0">
-                                            <i class="fas fa-check-circle fa-sm fa-fw"></i>
-                                        </p>
-                                        <p v-else class="text-danger mb-0">
-                                            <i class="fas fa-times-circle fa-sm fa-fw"></i>
-                                        </p>
-                                    </td>
-                                    <td class="text-uppercase text-center">
-                                        <p v-if="item.pivot.add" class="text-success mb-0">
-                                            <i class="fas fa-check-circle fa-sm fa-fw"></i>
-                                        </p>
-                                        <p v-else class="text-danger mb-0">
-                                            <i class="fas fa-times-circle fa-sm fa-fw"></i>
-                                        </p>
-                                    </td>
-                                    <td class="text-uppercase text-center">
-                                        <p v-if="item.pivot.update" class="text-success mb-0">
-                                            <i class="fas fa-check-circle fa-sm fa-fw"></i>
-                                        </p>
-                                        <p v-else class="text-danger mb-0">
-                                            <i class="fas fa-times-circle fa-sm fa-fw"></i>
-                                        </p>
-                                    </td>
-                                    <td class="text-uppercase text-center">
-                                        <p v-if="item.pivot.delete" class="text-success mb-0">
-                                            <i class="fas fa-check-circle fa-sm fa-fw"></i>
-                                        </p>
-                                        <p v-else class="text-danger mb-0">
-                                            <i class="fas fa-times-circle fa-sm fa-fw"></i>
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <button v-on:click="openModalManageForm(item)" class="btn btn-sm btn-outline-primary"><i class="fas fa-pen-alt fa-lg fa-fw"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="btn-group">
-                            <button type="button" v-on:click="closeModalManage" class="btn btn-danger btn-sm"><i class="fas fa-times-circle fa-lg fa-fw"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="btn-group">
+                <button type="button" @click="closeModalManage" class="btn btn-warning btn-sm">
+                    <i class="fas fa-times-circle fa-lg fa-fw"></i> Close
+                </button>
             </div>
-        </div>
+        </modal>
 
         <!-- Modal Manage Form -->
-        <div class="modal fade" id="modalManageForm" aria-hidden="true" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered ">
-                <div class="modal-content shadow-lg">
-                    <div class="modal-body">
+        <modal id="modalManageForm">
+            <h4 class="mb-3 text-uppercase">{{formManage.menu}}</h4>
 
-                        <h4 class="mb-3 text-uppercase">{{formManage.menu}}</h4>
+            <form @submit.prevent="submitManage">
+                <input type="hidden" v-model="formManage.id">
 
-                        <form @submit.prevent="submitManage">
-                            <input type="hidden" v-model="formManage.id">
-
-                            <div class="d-flex justify-content-between">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" v-model="formManage.read" true-value="1" false-value="0">
-                                    <label class="form-check-label">Read</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" v-model="formManage.add" true-value="1" false-value="0">
-                                    <label class="form-check-label">Add</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" v-model="formManage.update" true-value="1" false-value="0">
-                                    <label class="form-check-label">Update</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" v-model="formManage.delete" true-value="1" false-value="0">
-                                    <label class="form-check-label">Delete</label>
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary btn-sm" :disabled="formManage.processing">
-                                    <span v-if="formManage.processing">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        process...
-                                    </span>
-                                    <span v-else><i class="fas fa-save fa-lg fa-fw"></i> Save</span>
-                                </button>
-                                <button type="button" v-on:click="closeModalManageForm" class="btn btn-danger btn-sm" :disabled="formManage.processing"><i class="fas fa-times-circle fa-lg fa-fw"></i> Close</button>
-                            </div>
-                        </form>
+                <div class="d-flex justify-content-between">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" v-model="formManage.read" true-value="1" false-value="0">
+                        <label class="form-check-label">Read</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" v-model="formManage.add" true-value="1" false-value="0">
+                        <label class="form-check-label">Add</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" v-model="formManage.update" true-value="1" false-value="0">
+                        <label class="form-check-label">Update</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" v-model="formManage.delete" true-value="1" false-value="0">
+                        <label class="form-check-label">Delete</label>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <hr>
+
+                <div class="btn-group">
+                    <breeze-button class="btn-primary" :disabled="formManage.processing">
+                        <button-label :processing="formManage.processing" label="Save"/>
+                    </breeze-button>
+                    <breeze-button type="button" @click="closeModalManageForm" class="btn-warning" :disabled="formManage.processing">
+                        <i class="fas fa-times-circle fa-lg fa-fw"></i> Close
+                    </breeze-button>
+                </div>
+            </form>
+        </modal>
 
         <!-- Modal Role Form -->
-        <div class="modal fade" id="modalRole" aria-hidden="true" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered ">
-                <div class="modal-content shadow-lg">
-                    <div class="modal-body">
-                        <form @submit.prevent="submitRole">
-                            <input type="hidden" v-model="formRole.id">
+        <modal id="modalRole">
+            <form @submit.prevent="submitRole">
+                <input type="hidden" v-model="formRole.id">
 
-                            <div class="mb-3">
-                                <label for="title">Role Title</label>
-                                <breeze-input id="title" type="title" v-model="formRole.title"/>
-                                <validation :validation="formRole.errors.title" />
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="submit" class="btn btn-primary btn-sm" :disabled="formRole.processing">
-                                    <span v-if="formRole.processing">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        process...
-                                    </span>
-                                    <span v-else><i class="fas fa-save fa-lg fa-fw"></i> Save</span>
-                                </button>
-                                <button type="button" v-on:click="closeModalRole" class="btn btn-danger btn-sm" :disabled="formRole.processing"><i class="fas fa-times-circle fa-lg fa-fw"></i> Close</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="mb-3">
+                    <label for="title">Role Title</label>
+                    <breeze-input id="title" type="text" v-model="formRole.title"/>
+                    <validation :validation="formRole.errors.title" />
                 </div>
-            </div>
-        </div>
+
+                <div class="btn-group">
+                    <breeze-button class="btn-primary" :disabled="formRole.processing">
+                        <button-label :processing="formRole.processing" label="Save"/>
+                    </breeze-button>
+                    <breeze-button type="button" @click="closeModalRole" class="btn-warning" :disabled="formRole.processing">
+                        <i class="fas fa-times-circle fa-lg fa-fw"></i> Close
+                    </breeze-button>
+                </div>
+            </form>
+        </modal>
 
     </authenticated-layout>
 </template>
@@ -207,7 +185,10 @@
     import AuthenticatedLayout from '@/Layouts/Authenticated'
     import Breadcrumbs from '@/Components/Breadcrumbs'
     import Card from '@/Components/Card'
+    import Modal from '@/Components/Modal'
     import BreezeInput from '@/Components/Input'
+    import BreezeButton from '@/Components/Button'
+    import ButtonLabel from '@/Components/ButtonLabel'
     import Validation from '@/Components/Validation'
     import Pagination from '@/Components/Pagination'
     import { createToast } from 'mosha-vue-toastify'
@@ -217,7 +198,10 @@
             AuthenticatedLayout,
             Breadcrumbs,
             Card,
+            Modal,
             BreezeInput,
+            BreezeButton,
+            ButtonLabel,
             Validation,
             Pagination
         },
@@ -299,10 +283,11 @@
             deleteRole(id) {
                 this.$inertia
                     .delete(this.route('roles.destroy', {role: id}), {
-                        reserveScroll: true,
+                        preserveScroll: true,
                         onSuccess: () => {
                             createToast(this.$page.props.flash.message, {type: 'success'});
-                        }
+                        },
+                        onError: () => createToast(this.$page.props.errors.message, {type: 'warning'})
                     })
             },
 

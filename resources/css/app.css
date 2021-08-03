@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Georama:wght@100;300;500&display=swap');
 
+@import './admin.css';
 @import './custom.css';
 @import './keyframes.css';
 @import './animation.css';
-@import './admin.css';
 @import '~animate.css/animate.css';
 @import '~mosha-vue-toastify/dist/style.css';
 @import '~@fortawesome/fontawesome-free/css/fontawesome';
 @import '~@fortawesome/fontawesome-free/css/regular';
 @import '~@fortawesome/fontawesome-free/css/solid';
 @import '~@fortawesome/fontawesome-free/css/brands';
+@import '~@vueform/multiselect/themes/default.css';

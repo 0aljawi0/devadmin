@@ -7,14 +7,12 @@
                         <div class="col-lg-5">
 
                             <div class="card shadow-lg border-0 rounded-15 animate__animated animate__zoomIn">
-                                <div class="card-header rounded-header">
-                                    <inertia-link href="/" class="text-muted no-decoration">
-                                        <app-logo class="me-2" />
-                                        DEVADMIN
-                                    </inertia-link>
-                                </div>
-
                                 <div class="card-body">
+                                    <div class="mb-3">
+                                        <inertia-link href="/" class="text-muted no-decoration">
+                                            <app-logo class="me-2" /> DEVADMIN
+                                        </inertia-link>
+                                    </div>
 
                                     <div v-if="status" class="mb-3 alert alert-success">
                                         {{ status }}

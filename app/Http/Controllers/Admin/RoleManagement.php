@@ -48,9 +48,13 @@ class RoleManagement extends Controller
 
     public function destroy(Role $role)
     {
-        $role->manages()->detach();
-        $role->delete();
-        return $this->comeback('Role deleted successfully');
+        if (sizeof($role->users) > 0) {
+            return $this->comeback('Role cannot be deleted, because it is being used', false);
+        } else {
+            $role->manages()->detach();
+            $role->delete();
+            return $this->comeback('Role deleted successfully');
+        }
     }
 
     public function destroy_bulk(Request $request)
@@ -59,9 +63,12 @@ class RoleManagement extends Controller
 
         foreach ($request->check as $item) {
             $data = Role::find($item);
-            $data->manages()->detach();
-            $data->delete();
-            $count++;
+
+            if (sizeof($data->users) == 0) {
+                $data->manages()->detach();
+                $data->delete();
+                $count++;
+            }
         }
 
         return $this->comeback($count.' Role deleted successfully');

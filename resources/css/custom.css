@@ -1,9 +1,13 @@
 .bg-login {
-    background-color: aliceblue;
+    background-color: #264653;
 }
 
 .bg-admin {
     background-color: #f1faee;
+}
+
+.bg-topbar {
+    background-color: #006d77;
 }
 
 .w-logo {

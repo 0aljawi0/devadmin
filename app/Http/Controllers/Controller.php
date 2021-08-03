@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\ActivityLog;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -19,7 +20,7 @@ class Controller extends BaseController
             return back()->with('message', $message);
         } else {
             ActivityLog::create(['log' => Auth::user()->name . ' | ' . $message]);
-            return back()->with('message', $message);
+            return back()->withErrors(['message' => $message]);
         }
     }
 

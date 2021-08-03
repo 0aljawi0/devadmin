@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="btn">
+    <button :type="type" @click="$emit('click', $event)" class="btn btn-sm">
         <slot />
     </button>
 </template>
@@ -11,6 +11,6 @@
                 type: String,
                 default: 'submit',
             },
-        }
+        },
     }
 </script>
