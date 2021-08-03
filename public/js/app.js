@@ -23605,9 +23605,7 @@ var _hoisted_24 = {
   "class": "mb-3"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "name"
-}, "Name", -1
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Name", -1
 /* HOISTED */
 );
 
@@ -23625,9 +23623,7 @@ var _hoisted_29 = {
   "class": "mb-3"
 };
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "email"
-}, "Email", -1
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Email", -1
 /* HOISTED */
 );
 
@@ -23653,9 +23649,7 @@ var _hoisted_36 = {
   "class": "mb-3"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "password"
-}, "Password", -1
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Password", -1
 /* HOISTED */
 );
 
@@ -23663,9 +23657,7 @@ var _hoisted_38 = {
   "class": "mb-3"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "password_confirmation"
-}, "Password Confirm", -1
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Password Confirm", -1
 /* HOISTED */
 );
 
@@ -23691,9 +23683,7 @@ var _hoisted_44 = {
   "class": "mb-3"
 };
 
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "name"
-}, "Name", -1
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Name", -1
 /* HOISTED */
 );
 
@@ -23711,9 +23701,7 @@ var _hoisted_49 = {
   "class": "mb-3"
 };
 
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "email"
-}, "Email", -1
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Email", -1
 /* HOISTED */
 );
 
@@ -23758,9 +23746,7 @@ var _hoisted_60 = {
   "class": "mb-3"
 };
 
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "password"
-}, "Password", -1
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Password", -1
 /* HOISTED */
 );
 
@@ -23768,9 +23754,7 @@ var _hoisted_62 = {
   "class": "mb-3"
 };
 
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "password_confirmation"
-}, "Password Confirm", -1
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Password Confirm", -1
 /* HOISTED */
 );
 
@@ -23900,7 +23884,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return $options.submitUser && $options.submitUser.apply($options, arguments);
             }, ["prevent"]))
           }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "name",
             type: "text",
             modelValue: $data.formUser.name,
             "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -23915,7 +23898,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8
           /* PROPS */
           , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "email",
             type: "email",
             modelValue: $data.formUser.email,
             "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
@@ -23946,7 +23928,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8
           /* PROPS */
           , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "password",
             type: "password",
             modelValue: $data.formUser.password,
             "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
@@ -23959,7 +23940,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8
           /* PROPS */
           , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "password_confirmation",
             type: "password",
             modelValue: $data.formUser.password_confirmation,
             "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
@@ -24018,7 +23998,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return $options.submitProfile && $options.submitProfile.apply($options, arguments);
             }, ["prevent"]))
           }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_44, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "name",
             type: "text",
             modelValue: $data.formProfile.name,
             "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
@@ -24033,7 +24012,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8
           /* PROPS */
           , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "email",
             type: "email",
             modelValue: $data.formProfile.email,
             "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
@@ -24110,7 +24088,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return $options.submitPassword && $options.submitPassword.apply($options, arguments);
             }, ["prevent"]))
           }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_60, [_hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "password",
             type: "password",
             modelValue: $data.formPassword.password,
             "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
@@ -24123,7 +24100,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8
           /* PROPS */
           , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_62, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
-            id: "password_confirmation",
             type: "password",
             modelValue: $data.formPassword.password_confirmation,
             "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {

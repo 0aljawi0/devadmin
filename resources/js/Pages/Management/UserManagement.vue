@@ -62,15 +62,15 @@
             <form @submit.prevent="submitUser">
 
                 <div class="mb-3">
-                    <label for="name">Name</label>
-                    <breeze-input id="name" type="text" v-model="formUser.name"/>
+                    <label>Name</label>
+                    <breeze-input type="text" v-model="formUser.name"/>
                     <small class="text-info mt-1">{{ formUser.name.length }} character</small> <br>
                     <validation :validation="formUser.errors.name" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Email</label>
-                    <breeze-input id="email" type="email" v-model="formUser.email"/>
+                    <label>Email</label>
+                    <breeze-input type="email" v-model="formUser.email"/>
                     <small class="text-info mt-1">{{ formUser.name.length }} character</small> <br>
                     <validation :validation="formUser.errors.email" />
                 </div>
@@ -82,14 +82,14 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="password">Password</label>
-                    <breeze-input id="password" type="password" v-model="formUser.password"/>
+                    <label>Password</label>
+                    <breeze-input type="password" v-model="formUser.password"/>
                     <validation :validation="formUser.errors.password" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="password_confirmation">Password Confirm</label>
-                    <breeze-input id="password_confirmation" type="password" v-model="formUser.password_confirmation"/>
+                    <label>Password Confirm</label>
+                    <breeze-input type="password" v-model="formUser.password_confirmation"/>
                     <validation :validation="formUser.errors.password_confirmation" />
                 </div>
 
@@ -111,15 +111,15 @@
             <form @submit.prevent="submitProfile">
 
                 <div class="mb-3">
-                    <label for="name">Name</label>
-                    <breeze-input id="name" type="text" v-model="formProfile.name"/>
+                    <label>Name</label>
+                    <breeze-input type="text" v-model="formProfile.name"/>
                     <small class="text-info mt-1">{{ formProfile.name.length }} character</small> <br>
                     <validation :validation="formProfile.errors.name" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Email</label>
-                    <breeze-input id="email" type="email" v-model="formProfile.email"/>
+                    <label>Email</label>
+                    <breeze-input type="email" v-model="formProfile.email"/>
                     <small class="text-info mt-1">{{ formProfile.name.length }} character</small> <br>
                     <validation :validation="formProfile.errors.email" />
                 </div>
@@ -148,14 +148,14 @@
             <form @submit.prevent="submitPassword">
 
                 <div class="mb-3">
-                    <label for="password">Password</label>
-                    <breeze-input id="password" type="password" v-model="formPassword.password"/>
+                    <label>Password</label>
+                    <breeze-input type="password" v-model="formPassword.password"/>
                     <validation :validation="formPassword.errors.password" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="password_confirmation">Password Confirm</label>
-                    <breeze-input id="password_confirmation" type="password" v-model="formPassword.password_confirmation"/>
+                    <label>Password Confirm</label>
+                    <breeze-input type="password" v-model="formPassword.password_confirmation"/>
                     <validation :validation="formPassword.errors.password_confirmation" />
                 </div>
 
