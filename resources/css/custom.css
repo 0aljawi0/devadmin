@@ -1,0 +1,27 @@
+.bg-login {
+    background-color: aliceblue;
+}
+
+.bg-admin {
+    background-color: #f1faee;
+}
+
+.w-logo {
+    width: 30px;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+.rounded-15 {
+    border-radius: 15px;
+}
+
+.rounded-15 > .card-header {
+    border-radius: 15px 15px 0 0;
+}
+
+.btn {
+    border-radius: 5px;
+}
