@@ -120,7 +120,7 @@
                 <div class="mb-3">
                     <label>Email</label>
                     <breeze-input type="email" v-model="formProfile.email"/>
-                    <small class="text-info mt-1">{{ formProfile.name.length }} character</small> <br>
+                    <small class="text-info mt-1">{{ formProfile.email.length }} character</small> <br>
                     <validation :validation="formProfile.errors.email" />
                 </div>
 

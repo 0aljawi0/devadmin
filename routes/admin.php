@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityLog;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\RoleManagement;
 use App\Http\Controllers\Admin\UserManagement;
@@ -28,5 +29,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function(){
 
     // Manages
     Route::put('manages/{manage}', [RoleManagement::class, 'update_manage'])->name('manages.update');
+
+    // Activity Logs
+    Route::get('activity-log', [ActivityLog::class, 'index'])->name('activitylog.index');
 
 });

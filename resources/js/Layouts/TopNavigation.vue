@@ -17,7 +17,7 @@
                 <ul class="dropdown-menu dropdown-menu-end rounded-10 scale-in-top" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" :href="route('users.index')">User Management</a></li>
                     <li><a class="dropdown-item" :href="route('roles.index')">Role Management</a></li>
-                    <li><a class="dropdown-item" href="#">Activity Log</a></li>
+                    <li><a class="dropdown-item" :href="route('activitylog.index')">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
                         <inertia-link class="dropdown-item" :href="route('logout')" method="post" as="button">
