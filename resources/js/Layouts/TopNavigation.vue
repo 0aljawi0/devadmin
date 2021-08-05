@@ -15,10 +15,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v fa-lg fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end rounded-10 scale-in-top" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" :href="route('users.index')">User Management</a></li>
-                    <li><a class="dropdown-item" :href="route('roles.index')">Role Management</a></li>
-                    <li><a class="dropdown-item" :href="route('activitylog.index')">Activity Log</a></li>
-                    <li><hr class="dropdown-divider" /></li>
+                    <li v-if="$page.props.auth.user.role_id == 0"><a class="dropdown-item" :href="route('users.index')">User Management</a></li>
+                    <li v-if="$page.props.auth.user.role_id == 0"><a class="dropdown-item" :href="route('roles.index')">Role Management</a></li>
+                    <li v-if="$page.props.auth.user.role_id == 0"><a class="dropdown-item" :href="route('activitylog.index')">Activity Log</a></li>
+                    <li v-if="$page.props.auth.user.role_id == 0"><hr class="dropdown-divider" /></li>
                     <li>
                         <inertia-link class="dropdown-item" :href="route('logout')" method="post" as="button">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>

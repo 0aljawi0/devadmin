@@ -22,6 +22,14 @@
     border-radius: 15px;
 }
 
+.rounded-15-top {
+    border-radius: 15px 15px 0 0;
+}
+
+.rounded-15-bottom {
+    border-radius: 0 0 15px 15px;
+}
+
 .rounded-15 > .card-header {
     border-radius: 15px 15px 0 0;
 }

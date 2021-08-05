@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ActivityLog;
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\Images;
 use App\Http\Controllers\Admin\RoleManagement;
 use App\Http\Controllers\Admin\UserManagement;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function(){
 
     // Activity Logs
     Route::get('activity-log', [ActivityLog::class, 'index'])->name('activitylog.index');
+
+    // Images
+    Route::get('images', [Images::class, 'index'])->name('images.index');
+    Route::post('images', [Images::class, 'store'])->name('images.store');
+    Route::delete('images/{image}', [Images::class, 'destroy'])->name('images.destroy');
 
 });

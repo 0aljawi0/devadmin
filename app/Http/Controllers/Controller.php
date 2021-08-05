@@ -38,4 +38,20 @@ class Controller extends BaseController
 
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
+
+    public function administratorManage()
+    {
+        return [
+            'manages' => [
+                0 => [
+                    'pivot' => [
+                        'read' => 1,
+                        'add' => 1,
+                        'update' => 1,
+                        'delete' => 1,
+                    ]
+                ]
+            ]
+        ];
+    }
 }

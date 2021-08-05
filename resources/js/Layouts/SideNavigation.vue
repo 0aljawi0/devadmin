@@ -8,6 +8,12 @@
                     Dashboard
                 </a>
 
+                <div class="sb-sidenav-menu-heading">Settings</div>
+                <a class="nav-link" :class="route().current('images.index') ? 'active' : ''" :href="route('images.index')">
+                    <div class="sb-nav-link-icon"><i class="fas fa-images fa-fw"></i></div>
+                    Images
+                </a>
+
             </div>
         </div>
         <div class="sb-sidenav-footer">
