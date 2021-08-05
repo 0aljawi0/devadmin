@@ -22,16 +22,12 @@
     border-radius: 15px;
 }
 
-.rounded-15-top {
+.rounded-15-top, .rounded-15 > .card-header {
     border-radius: 15px 15px 0 0;
 }
 
-.rounded-15-bottom {
+.rounded-15-bottom, .card-footer:last-child {
     border-radius: 0 0 15px 15px;
-}
-
-.rounded-15 > .card-header {
-    border-radius: 15px 15px 0 0;
 }
 
 .btn {
@@ -50,4 +46,8 @@
 
 .close-button:hover {
     opacity: 1;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

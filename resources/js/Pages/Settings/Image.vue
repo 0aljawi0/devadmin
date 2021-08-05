@@ -21,16 +21,20 @@
                             </div>
                         </div>
 
-                        <div v-if="images.data.length > 0" class="row mt-3">
-                            <div v-for="item in images.data" :key="item.id" class="col-md-2 p-2">
-                                <div class="card rounded-15 shadow-sm">
-                                    <img :src="asset+'/thumbnail/'+item.image" class="card-img-top rounded-15-top" :alt="item.title">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item py-0 bg-admin"><small>{{item.title}}</small></li>
-                                        <li class="list-group-item py-0 bg-admin"><small>{{item.type}}, {{item.size}}</small></li>
-                                        <li class="list-group-item py-0 bg-admin"><small>{{item.pixel}}</small></li>
-                                    </ul>
-                                    <div class="card-body bg-admin text-center rounded-15-bottom p-1">
+                        <div v-if="images.data.length > 0" class="row row-cols-1 row-cols-md-6 g-4 mt-3">
+                            <div v-for="item in images.data" :key="item.id" class="col">
+                                <div class="card h-100 rounded-15 shadow-sm">
+                                    <img @click="previewRealImage(asset+'/images/'+item.image)" :src="asset+'/thumbnail/'+item.image" class="card-img-top rounded-15-top cursor-pointer" :alt="item.title">
+
+                                    <div class="card-body bg-admin p-0">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item py-0 bg-admin"><small>{{item.title}}</small></li>
+                                            <li class="list-group-item py-0 bg-admin"><small>{{item.type}}, {{item.size}}</small></li>
+                                            <li class="list-group-item py-0 bg-admin"><small>{{item.pixel}}</small></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="card-footer rounded-15-bottom">
                                         <div class="d-flex justify-content-between">
                                             <button @click="previewRealImage(asset+'/images/'+item.image)" type="button" class="btn btn-sm btn-primary rounded-circle"><i class="fas fa-search-plus fa-sm fa-fw"></i></button>
                                             <button v-show="roles.manages[0].pivot.delete == 1" @click="destroy(item.id)" type="button" class="btn btn-sm btn-danger rounded-circle"><i class="fas fa-trash fa-sm fa-fw"></i></button>
@@ -56,7 +60,7 @@
         </div>
 
         <!-- Modal Password -->
-        <modal id="modal" :big="true">
+        <modal id="modal">
             <img :src="imageReal" alt="image" class="w-100">
             <span @click="closeModal" class="close-button"><i class="fas fa-times-circle fa-lg fa-fw"></i></span>
         </modal>
