@@ -32,7 +32,7 @@
                                     </ul>
                                     <div class="card-body bg-admin text-center rounded-15-bottom p-0 py-1">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus fa-lg fa-fw"></i></button>
+                                            <button @click="previewRealImage(asset+'/images/'+item.image)" type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus fa-lg fa-fw"></i></button>
                                             <button v-show="roles.manages[0].pivot.delete == 1" @click="destroy(item.id)" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash fa-lg fa-fw"></i></button>
                                         </div>
                                     </div>
@@ -54,6 +54,12 @@
                 <li for="breadcrumb-item"><h3><i class="fas fa-lock fa-sm fa-fw"></i> You are not authorized to open this page</h3></li>
             </breadcrumbs>
         </div>
+
+        <!-- Modal Password -->
+        <modal id="modal" :big="true">
+            <img :src="imageReal" alt="image" class="w-100">
+            <span @click="closeModal" class="close-button"><i class="fas fa-times-circle fa-lg fa-fw"></i></span>
+        </modal>
     </authenticated-layout>
 </template>
 
@@ -88,12 +94,28 @@
 
         data() {
             return {
+                modal: null,
+                imageReal: '#',
                 progress: false,
                 percentage: 0,
             }
         },
 
         methods: {
+            openModal() {
+                this.modal.show();
+            },
+
+            closeModal() {
+                this.imageReal = '#';
+                this.modal.hide();
+            },
+
+            previewRealImage(image) {
+                this.imageReal = image;
+                this.openModal();
+            },
+
             uploadImages(files) {
                 let data = new FormData();
                 for (let i = 0; i < files.length; i++) {
@@ -122,7 +144,11 @@
                         createToast(this.$page.props.flash.message, {type: 'success'});
                     }
                 })
-            }
+            },
+        },
+
+        mounted() {
+            this.modal = new window.bootstrap.Modal(document.getElementById('modal'), {keyboard: false, backdrop: false});
         }
     }
 </script>

@@ -37,3 +37,17 @@
 .btn {
     border-radius: 5px;
 }
+
+.close-button {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    /* color: #e9c46a; */
+    opacity: 0.8;
+    transition: all 200ms linear;
+}
+
+.close-button:hover {
+    opacity: 1;
+}
