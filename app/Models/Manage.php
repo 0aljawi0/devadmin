@@ -12,7 +12,17 @@ class Manage extends Model
 
     protected $fillable = [
         'menu',
+        'action'
     ];
+
+    protected $casts = [
+        'action' => 'array'
+    ];
+
+    public function getActionAttribute($value)
+    {
+        return json_decode($value);
+    }
 
     public function roles()
     {

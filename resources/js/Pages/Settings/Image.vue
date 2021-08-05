@@ -30,10 +30,10 @@
                                         <li class="list-group-item py-0 bg-admin"><small>{{item.type}}, {{item.size}}</small></li>
                                         <li class="list-group-item py-0 bg-admin"><small>{{item.pixel}}</small></li>
                                     </ul>
-                                    <div class="card-body bg-admin text-center rounded-15-bottom p-0 py-1">
-                                        <div class="btn-group">
-                                            <button @click="previewRealImage(asset+'/images/'+item.image)" type="button" class="btn btn-sm btn-primary"><i class="fas fa-search-plus fa-lg fa-fw"></i></button>
-                                            <button v-show="roles.manages[0].pivot.delete == 1" @click="destroy(item.id)" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash fa-lg fa-fw"></i></button>
+                                    <div class="card-body bg-admin text-center rounded-15-bottom p-1">
+                                        <div class="d-flex justify-content-between">
+                                            <button @click="previewRealImage(asset+'/images/'+item.image)" type="button" class="btn btn-sm btn-primary rounded-circle"><i class="fas fa-search-plus fa-sm fa-fw"></i></button>
+                                            <button v-show="roles.manages[0].pivot.delete == 1" @click="destroy(item.id)" type="button" class="btn btn-sm btn-danger rounded-circle"><i class="fas fa-trash fa-sm fa-fw"></i></button>
                                         </div>
                                     </div>
                                 </div>

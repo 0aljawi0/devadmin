@@ -71,7 +71,7 @@
                 <tbody>
                     <tr v-for="item in manages" :key="item.id">
                         <td class="text-uppercase">{{item.menu}}</td>
-                        <td class="text-uppercase text-center">
+                        <td v-if="item.action.read" class="text-uppercase text-center">
                             <p v-if="item.pivot.read" class="text-success mb-0">
                                 <i class="fas fa-check-circle fa-sm fa-fw"></i>
                             </p>
@@ -79,7 +79,8 @@
                                 <i class="fas fa-times-circle fa-sm fa-fw"></i>
                             </p>
                         </td>
-                        <td class="text-uppercase text-center">
+                        <td v-else class="text-center text-muted"><i class="fas fa-minus-circle fa-sm fa-fw"></i></td>
+                        <td v-if="item.action.add" class="text-uppercase text-center">
                             <p v-if="item.pivot.add" class="text-success mb-0">
                                 <i class="fas fa-check-circle fa-sm fa-fw"></i>
                             </p>
@@ -87,7 +88,8 @@
                                 <i class="fas fa-times-circle fa-sm fa-fw"></i>
                             </p>
                         </td>
-                        <td class="text-uppercase text-center">
+                        <td v-else class="text-center text-muted"><i class="fas fa-minus-circle fa-sm fa-fw"></i></td>
+                        <td v-if="item.action.update" class="text-uppercase text-center">
                             <p v-if="item.pivot.update" class="text-success mb-0">
                                 <i class="fas fa-check-circle fa-sm fa-fw"></i>
                             </p>
@@ -95,7 +97,8 @@
                                 <i class="fas fa-times-circle fa-sm fa-fw"></i>
                             </p>
                         </td>
-                        <td class="text-uppercase text-center">
+                        <td v-else class="text-center text-muted"><i class="fas fa-minus-circle fa-sm fa-fw"></i></td>
+                        <td v-if="item.action.delete" class="text-uppercase text-center">
                             <p v-if="item.pivot.delete" class="text-success mb-0">
                                 <i class="fas fa-check-circle fa-sm fa-fw"></i>
                             </p>
@@ -103,6 +106,7 @@
                                 <i class="fas fa-times-circle fa-sm fa-fw"></i>
                             </p>
                         </td>
+                        <td v-else class="text-center text-muted"><i class="fas fa-minus-circle fa-sm fa-fw"></i></td>
                         <td>
                             <button @click="openModalManageForm(item)" class="btn btn-sm btn-outline-primary"><i class="fas fa-pen-alt fa-lg fa-fw"></i></button>
                         </td>
@@ -125,19 +129,19 @@
                 <input type="hidden" v-model="formManage.id">
 
                 <div class="d-flex justify-content-between">
-                    <div class="form-check">
+                    <div v-show="action.read" class="form-check">
                         <input class="form-check-input" type="checkbox" v-model="formManage.read" true-value="1" false-value="0">
                         <label class="form-check-label">Read</label>
                     </div>
-                    <div class="form-check">
+                    <div v-show="action.add" class="form-check">
                         <input class="form-check-input" type="checkbox" v-model="formManage.add" true-value="1" false-value="0">
                         <label class="form-check-label">Add</label>
                     </div>
-                    <div class="form-check">
+                    <div v-show="action.update" class="form-check">
                         <input class="form-check-input" type="checkbox" v-model="formManage.update" true-value="1" false-value="0">
                         <label class="form-check-label">Update</label>
                     </div>
-                    <div class="form-check">
+                    <div v-show="action.delete" class="form-check">
                         <input class="form-check-input" type="checkbox" v-model="formManage.delete" true-value="1" false-value="0">
                         <label class="form-check-label">Delete</label>
                     </div>
@@ -231,6 +235,13 @@
                     update: 0,
                     delete: 0
                 }),
+
+                action: {
+                    read: false,
+                    add: false,
+                    update: false,
+                    delete: false
+                }
             }
         },
 
@@ -321,6 +332,7 @@
                 this.formManage.add = item.pivot.add;
                 this.formManage.update = item.pivot.update;
                 this.formManage.delete = item.pivot.delete;
+                this.action = item.action;
                 this.modalManageForm.show();
                 this.closeModalManage();
             },
