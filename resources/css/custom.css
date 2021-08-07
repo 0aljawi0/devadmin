@@ -51,3 +51,35 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.image-selector {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border: 2px dashed #c2c2c2;
+    border-radius: 15px;
+    color: #c2c2c2;
+}
+
+.btn-choose {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    cursor: pointer;
+    -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #264653;
+    border-color: #264653;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

@@ -15,6 +15,16 @@ class ManagesSeeder extends Seeder
     public function run()
     {
         Manage::create([
+            'menu' => 'logo',
+            'action' => json_encode([
+                'read' => true,
+                'add' => false,
+                'update' => true,
+                'delete' => false
+            ]),
+        ]);
+
+        Manage::create([
             'menu' => 'image',
             'action' => json_encode([
                 'read' => true,
@@ -23,11 +33,5 @@ class ManagesSeeder extends Seeder
                 'delete' => true
             ]),
         ]);
-        // Manage::create([
-        //     'menu' => 'menu',
-        // ]);
-        // Manage::create([
-        //     'menu' => 'pages',
-        // ]);
     }
 }

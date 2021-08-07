@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\Settings\Images;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->group(function() {
+
+    Route::get('all-images', [Images::class, 'all_images'])->name('all-images');
+    Route::post('upload-image', [Images::class, 'upload_image'])->name('upload-image');
+
+});

@@ -9,7 +9,7 @@
             </div>
 
             <div id="layoutSidenav_content" class="bg-admin">
-                <main>
+                <main class="mb-4">
                     <slot />
                 </main>
                 <footer class="py-4 bg-light mt-auto">
