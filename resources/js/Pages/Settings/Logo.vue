@@ -40,7 +40,7 @@
                                 <validation :validation="form.errors.logo_light" />
                             </div>
 
-                            <breeze-button class="btn-primary" :disabled="form.processing">
+                            <breeze-button v-if="roles.manages[0].pivot.update == 1" class="btn-primary" :disabled="form.processing">
                                 <button-label :processing="form.processing" label="Save"/>
                             </breeze-button>
                         </form>

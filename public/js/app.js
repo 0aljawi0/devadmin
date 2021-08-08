@@ -25953,7 +25953,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             validation: $data.form.errors.logo_light
           }, null, 8
           /* PROPS */
-          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
+          , ["validation"])]), $props.roles.manages[0].pivot.update == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_button, {
+            key: 0,
             "class": "btn-primary",
             disabled: $data.form.processing
           }, {
@@ -25970,7 +25971,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
           }, 8
           /* PROPS */
-          , ["disabled"])], 32
+          , ["disabled"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 32
           /* HYDRATE_EVENTS */
           )];
         }),
