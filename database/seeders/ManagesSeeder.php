@@ -16,22 +16,22 @@ class ManagesSeeder extends Seeder
     {
         Manage::create([
             'menu' => 'logo',
-            'action' => json_encode([
+            'action' => [
                 'read' => true,
                 'add' => false,
                 'update' => true,
                 'delete' => false
-            ]),
+            ],
         ]);
 
         Manage::create([
             'menu' => 'image',
-            'action' => json_encode([
+            'action' => [
                 'read' => true,
                 'add' => true,
                 'update' => false,
                 'delete' => true
-            ]),
+            ],
         ]);
     }
 }

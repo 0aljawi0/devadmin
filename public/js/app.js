@@ -21223,7 +21223,8 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": 'Label'
     },
-    imageInfo: Array
+    imageInfo: Array,
+    asset: String
   }
 });
 
@@ -22323,10 +22324,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Breadcrumbs */ "./resources/js/Components/Breadcrumbs.vue");
 /* harmony import */ var _Components_Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Card */ "./resources/js/Components/Card.vue");
 /* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
-/* harmony import */ var _Components_Validation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Validation */ "./resources/js/Components/Validation.vue");
-/* harmony import */ var _Components_ImageSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ImageSelector */ "./resources/js/Components/ImageSelector.vue");
-/* harmony import */ var _Components_ImageSelectorModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/ImageSelectorModal */ "./resources/js/Components/ImageSelectorModal.vue");
-/* harmony import */ var mosha_vue_toastify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! mosha-vue-toastify */ "./node_modules/mosha-vue-toastify/dist/mosha-vue-toastify.es.js");
+/* harmony import */ var _Components_ButtonLabel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/ButtonLabel */ "./resources/js/Components/ButtonLabel.vue");
+/* harmony import */ var _Components_Validation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Validation */ "./resources/js/Components/Validation.vue");
+/* harmony import */ var _Components_ImageSelector__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/ImageSelector */ "./resources/js/Components/ImageSelector.vue");
+/* harmony import */ var _Components_ImageSelectorModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/ImageSelectorModal */ "./resources/js/Components/ImageSelectorModal.vue");
+/* harmony import */ var mosha_vue_toastify__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! mosha-vue-toastify */ "./node_modules/mosha-vue-toastify/dist/mosha-vue-toastify.es.js");
+
 
 
 
@@ -22341,17 +22344,21 @@ __webpack_require__.r(__webpack_exports__);
     Breadcrumbs: _Components_Breadcrumbs__WEBPACK_IMPORTED_MODULE_1__.default,
     Card: _Components_Card__WEBPACK_IMPORTED_MODULE_2__.default,
     BreezeButton: _Components_Button__WEBPACK_IMPORTED_MODULE_3__.default,
-    Validation: _Components_Validation__WEBPACK_IMPORTED_MODULE_4__.default,
-    ImageSelector: _Components_ImageSelector__WEBPACK_IMPORTED_MODULE_5__.default,
-    ImageSelectorModal: _Components_ImageSelectorModal__WEBPACK_IMPORTED_MODULE_6__.default
+    ButtonLabel: _Components_ButtonLabel__WEBPACK_IMPORTED_MODULE_4__.default,
+    Validation: _Components_Validation__WEBPACK_IMPORTED_MODULE_5__.default,
+    ImageSelector: _Components_ImageSelector__WEBPACK_IMPORTED_MODULE_6__.default,
+    ImageSelectorModal: _Components_ImageSelectorModal__WEBPACK_IMPORTED_MODULE_7__.default
   },
   props: ['logo', 'roles', 'asset'],
   data: function data() {
+    var _this$logo$id, _this$logo$value$favi, _this$logo$value$logo, _this$logo$value$logo2;
+
     return {
       form: this.$inertia.form({
-        favicon: '',
-        logo_dark: '',
-        logo_light: ''
+        id: (_this$logo$id = this.logo.id) !== null && _this$logo$id !== void 0 ? _this$logo$id : 0,
+        favicon: (_this$logo$value$favi = this.logo.value.favicon) !== null && _this$logo$value$favi !== void 0 ? _this$logo$value$favi : '',
+        logo_dark: (_this$logo$value$logo = this.logo.value.logo_dark) !== null && _this$logo$value$logo !== void 0 ? _this$logo$value$logo : '',
+        logo_light: (_this$logo$value$logo2 = this.logo.value.logo_light) !== null && _this$logo$value$logo2 !== void 0 ? _this$logo$value$logo2 : ''
       }),
       imageInfo: {
         favicon: ['Website Icon', 'Image optimal pixel 128 x 128', 'Image extension PNG'],
@@ -22362,8 +22369,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleSetImage: function handleSetImage(event) {
-      this.form[event.input] = this.asset + '/thumbnail/' + event.image;
+      this.form[event.input] = event.image;
       this.$refs.selectorModal.closeModal();
+    },
+    submit: function submit() {
+      var _this = this;
+
+      var url = this.form.id == 0 ? route('logo.update') : route('logo.update', {
+        id: this.form.id
+      });
+      this.form.post(url, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this.form.clearErrors();
+
+          (0,mosha_vue_toastify__WEBPACK_IMPORTED_MODULE_8__.createToast)(_this.$page.props.flash.message, {
+            type: 'success'
+          });
+        }
+      });
     }
   }
 });
@@ -22742,7 +22766,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": "image-selector"
   }, [$props.image ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-    src: $props.image,
+    src: $props.asset + '/thumbnail/' + $props.image,
     alt: "Image Preview",
     "class": "w-100 rounded-15"
   }, null, 8
@@ -25788,18 +25812,33 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 var _hoisted_7 = {
   "class": "mb-3 me-3"
 };
-var _hoisted_8 = {
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
   "class": "mb-3 me-3"
 };
-var _hoisted_9 = {
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
   "class": "mb-3"
 };
-var _hoisted_10 = {
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
   key: 1,
   "class": "container-fluid px-4"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", {
   "for": "breadcrumb-item"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h3", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
   "class": "fas fa-lock fa-sm fa-fw"
@@ -25813,6 +25852,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_selector = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-selector");
 
   var _component_validation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("validation");
+
+  var _component_button_label = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("button-label");
+
+  var _component_breeze_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-button");
 
   var _component_card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("card");
 
@@ -25837,81 +25880,108 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
-            onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-              return _ctx.submit && _ctx.submit.apply(_ctx, arguments);
+            onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+              return $options.submit && $options.submit.apply($options, arguments);
             }, ["prevent"]))
-          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+          }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+            type: "hidden",
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+              return $data.form.id = $event;
+            })
+          }, null, 512
+          /* NEED_PATCH */
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+            asset: $props.asset,
             label: "Favicon",
             image: $data.form.favicon,
             imageInfo: $data.imageInfo.favicon,
-            onOpenModal: _cache[1] || (_cache[1] = function ($event) {
+            onOpenModal: _cache[2] || (_cache[2] = function ($event) {
               return _ctx.$refs.selectorModal.openModal('favicon');
             })
           }, null, 8
           /* PROPS */
-          , ["image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          , ["asset", "image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
             type: "hidden",
-            "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+            "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
               return $data.form.favicon = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.favicon]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.favicon]]), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
             validation: $data.form.errors.favicon
           }, null, 8
           /* PROPS */
-          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+            asset: $props.asset,
             label: "Logo Dark",
             image: $data.form.logo_dark,
             imageInfo: $data.imageInfo.logo_dark,
-            onOpenModal: _cache[3] || (_cache[3] = function ($event) {
+            onOpenModal: _cache[4] || (_cache[4] = function ($event) {
               return _ctx.$refs.selectorModal.openModal('logo_dark');
             })
           }, null, 8
           /* PROPS */
-          , ["image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          , ["asset", "image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
             type: "hidden",
-            "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+            "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
               return $data.form.logo_dark = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.logo_dark]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.logo_dark]]), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
             validation: $data.form.errors.logo_dark
           }, null, 8
           /* PROPS */
-          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_selector, {
+            asset: $props.asset,
             label: "Logo Light",
             image: $data.form.logo_light,
             imageInfo: $data.imageInfo.logo_light,
-            onOpenModal: _cache[5] || (_cache[5] = function ($event) {
+            onOpenModal: _cache[6] || (_cache[6] = function ($event) {
               return _ctx.$refs.selectorModal.openModal('logo_light');
             })
           }, null, 8
           /* PROPS */
-          , ["image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+          , ["asset", "image", "imageInfo"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
             type: "hidden",
-            "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+            "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
               return $data.form.logo_light = $event;
             })
           }, null, 512
           /* NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.logo_light]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
+          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.logo_light]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation, {
             validation: $data.form.errors.logo_light
           }, null, 8
           /* PROPS */
-          , ["validation"])])], 32
+          , ["validation"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
+            "class": "btn-primary",
+            disabled: $data.form.processing
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_button_label, {
+                processing: $data.form.processing,
+                label: "Save"
+              }, null, 8
+              /* PROPS */
+              , ["processing"])];
+            }),
+            _: 1
+            /* STABLE */
+
+          }, 8
+          /* PROPS */
+          , ["disabled"])], 32
           /* HYDRATE_EVENTS */
           )];
         }),
         _: 1
         /* STABLE */
 
-      })])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breadcrumbs, {
+      })])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breadcrumbs, {
         title: "Warning!"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_11];
+          return [_hoisted_14];
         }),
         _: 1
         /* STABLE */

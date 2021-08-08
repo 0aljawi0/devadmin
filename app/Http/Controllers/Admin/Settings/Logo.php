@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Settings\LogoRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\Option;
 use App\Models\Role;
 use Inertia\Inertia;
@@ -13,7 +13,7 @@ class Logo extends Controller
 {
     public function index()
     {
-        $logo = Option::firstWhere('key','logo');
+        $logo = Option::select('id', 'value')->firstWhere('key','logo');
         $roles = Role::where('id', Auth::user()->role_id)->with('manages', function ($query) {
             $query->where('menu', 'logo');
         })->first();
@@ -25,16 +25,21 @@ class Logo extends Controller
         ]);
     }
 
-    public function update(Request $request, Option $option)
+    public function update(LogoRequest $request)
     {
-        $request->validate([
-            'favicon' => 'required',
-            'logo_dark' => 'required',
-            'logo_light' => 'required'
-        ]);
+        $validated = $request->validated();
+        $option = Option::find(request()->id ?? 0);
 
-        if ($option) $option->fill(['value' => json_encode($request->all())])->save();
-        else Option::create(['key' => 'logo', 'value' => json_encode($request->all())]);
+        if ($option) {
+            $option->fill([
+                'value' => $validated
+            ])->save();
+        } else {
+            Option::create([
+                'key' => 'logo',
+                'value' => $validated
+            ]);
+        }
 
         return $this->comeback('Logo changed successfully');
     }

@@ -18,8 +18,8 @@ class Option extends Model
         'value' => 'array'
     ];
 
-    public function getValueAttribute($value)
+    public function getValueAttribute($v)
     {
-        return json_decode($value);
+        return json_decode($v);
     }
 }

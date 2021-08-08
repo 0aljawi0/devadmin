@@ -4,7 +4,7 @@
             <label class="mb-2">{{label}}</label>
             <div @click="$emit('openModal')" class="image-selector">
                 <div v-if="image">
-                    <img :src="image" alt="Image Preview" class="w-100 rounded-15">
+                    <img :src="asset+'/thumbnail/'+image" alt="Image Preview" class="w-100 rounded-15">
                 </div>
                 <div v-else class="text-center">
                     <i class="fas fa-images fa-5x fa-fw"></i>
@@ -34,6 +34,7 @@
                 default: 'Label'
             },
             imageInfo: Array,
+            asset: String,
         },
     }
 </script>

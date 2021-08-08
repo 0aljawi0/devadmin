@@ -17,10 +17,10 @@ class Controller extends BaseController
     {
         if ($success) {
             ActivityLog::create(['log' => Auth::user()->name . ' | ' . $message]);
-            return back()->with('message', $message);
+            return redirect()->back()->with('message', $message);
         } else {
             ActivityLog::create(['log' => Auth::user()->name . ' | ' . $message]);
-            return back()->withErrors(['message' => $message]);
+            return redirect()->back()->withErrors(['message' => $message]);
         }
     }
 

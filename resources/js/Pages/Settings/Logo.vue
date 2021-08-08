@@ -17,24 +17,32 @@
 
                         <form @submit.prevent="submit">
 
+                            <input type="hidden" v-model="form.id">
+
                             <div class="mb-3 me-3">
-                                <image-selector label="Favicon" :image="form.favicon" :imageInfo="imageInfo.favicon" @openModal="$refs.selectorModal.openModal('favicon')"/>
+                                <image-selector :asset="asset" label="Favicon" :image="form.favicon" :imageInfo="imageInfo.favicon" @openModal="$refs.selectorModal.openModal('favicon')"/>
                                 <input type="hidden" v-model="form.favicon">
+                                <br>
                                 <validation :validation="form.errors.favicon" />
                             </div>
 
                             <div class="mb-3 me-3">
-                                <image-selector label="Logo Dark" :image="form.logo_dark" :imageInfo="imageInfo.logo_dark" @openModal="$refs.selectorModal.openModal('logo_dark')"/>
+                                <image-selector :asset="asset" label="Logo Dark" :image="form.logo_dark" :imageInfo="imageInfo.logo_dark" @openModal="$refs.selectorModal.openModal('logo_dark')"/>
                                 <input type="hidden" v-model="form.logo_dark">
+                                <br>
                                 <validation :validation="form.errors.logo_dark" />
                             </div>
 
                             <div class="mb-3">
-                                <image-selector label="Logo Light" :image="form.logo_light" :imageInfo="imageInfo.logo_light" @openModal="$refs.selectorModal.openModal('logo_light')"/>
+                                <image-selector :asset="asset" label="Logo Light" :image="form.logo_light" :imageInfo="imageInfo.logo_light" @openModal="$refs.selectorModal.openModal('logo_light')"/>
                                 <input type="hidden" v-model="form.logo_light">
+                                <br>
                                 <validation :validation="form.errors.logo_light" />
                             </div>
 
+                            <breeze-button class="btn-primary" :disabled="form.processing">
+                                <button-label :processing="form.processing" label="Save"/>
+                            </breeze-button>
                         </form>
                     </card>
                 </div>
@@ -57,6 +65,7 @@
     import Breadcrumbs from '@/Components/Breadcrumbs'
     import Card from '@/Components/Card'
     import BreezeButton from '@/Components/Button'
+    import ButtonLabel from '@/Components/ButtonLabel'
     import Validation from '@/Components/Validation'
     import ImageSelector from '@/Components/ImageSelector'
     import ImageSelectorModal from '@/Components/ImageSelectorModal'
@@ -68,6 +77,7 @@
             Breadcrumbs,
             Card,
             BreezeButton,
+            ButtonLabel,
             Validation,
             ImageSelector,
             ImageSelectorModal
@@ -78,9 +88,10 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    favicon: '',
-                    logo_dark: '',
-                    logo_light: ''
+                    id: this.logo.id ?? 0,
+                    favicon: this.logo.value.favicon ?? '',
+                    logo_dark: this.logo.value.logo_dark ?? '',
+                    logo_light: this.logo.value.logo_light ?? ''
                 }),
                 imageInfo: {
                     favicon: [
@@ -104,8 +115,19 @@
 
         methods: {
             handleSetImage(event) {
-                this.form[event.input] = this.asset+'/thumbnail/'+event.image;
+                this.form[event.input] = event.image;
                 this.$refs.selectorModal.closeModal()
+            },
+
+            submit() {
+                let url = this.form.id == 0 ? route('logo.update') : route('logo.update', {id: this.form.id});
+                this.form.post(url,{
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.form.clearErrors();
+                        createToast(this.$page.props.flash.message, {type: 'success'});
+                    }
+                })
             }
         },
     }

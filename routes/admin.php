@@ -42,6 +42,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function(){
 
     // Logo
     Route::get('logo', [Logo::class, 'index'])->name('logo.index');
-    Route::put('logo/{option}', [Logo::class, 'update'])->name('logo.update');
+    Route::post('logo', [Logo::class, 'update'])->name('logo.update');
 
 });
