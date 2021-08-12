@@ -24,6 +24,12 @@ class Controller extends BaseController
         }
     }
 
+    public function routeback($route, $message)
+    {
+        ActivityLog::create(['log' => Auth::user()->name . ' | ' . $message]);
+        return redirect()->route($route)->with('message', $message);
+    }
+
     public function formatBytes($bytes, $precision = 2)
     {
         $units = array('B', 'KB', 'MB', 'GB', 'TB');

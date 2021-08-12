@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Management\RoleManagement;
 use App\Http\Controllers\Admin\Management\UserManagement;
 use App\Http\Controllers\Admin\Settings\Images;
 use App\Http\Controllers\Admin\Settings\Logo;
+use App\Http\Controllers\Admin\Settings\Pages;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,5 +44,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function(){
     // Logo
     Route::get('logo', [Logo::class, 'index'])->name('logo.index');
     Route::post('logo', [Logo::class, 'update'])->name('logo.update');
+
+    // Pages
+    Route::get('pages', [Pages::class, 'index'])->name('pages.index');
+    Route::get('pages-action', [Pages::class, 'action'])->name('pages.action');
+    Route::post('pages', [Pages::class, 'store'])->name('pages.store');
+    Route::put('pages/{page}', [Pages::class, 'update'])->name('pages.update');
+    Route::delete('pages/{page}', [Pages::class, 'destroy'])->name('pages.destroy');
+    Route::post('pages-bulk', [Pages::class, 'destroy_bulk'])->name('pages.destroy.bulk');
+    Route::get('pages-status', [Pages::class, 'update_status'])->name('pages.update.status');
 
 });

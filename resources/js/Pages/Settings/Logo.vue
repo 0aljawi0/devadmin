@@ -88,10 +88,10 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    id: this.logo.id ?? 0,
-                    favicon: this.logo.value.favicon ?? '',
-                    logo_dark: this.logo.value.logo_dark ?? '',
-                    logo_light: this.logo.value.logo_light ?? ''
+                    id: this.logo ? this.logo.id : 0,
+                    favicon: this.logo ? this.logo.value.favicon : '',
+                    logo_dark: this.logo ? this.logo.value.logo_dark : '',
+                    logo_light: this.logo ? this.logo.value.logo_light : ''
                 }),
                 imageInfo: {
                     favicon: [

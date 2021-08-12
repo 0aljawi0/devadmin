@@ -71,4 +71,16 @@ class Images extends Controller
             return response()->json(['message' => 'Image added successfully']);
         }
     }
+
+    public function editor_image(Request $request)
+    {
+        $img = UploadImage::upload($request->file('image'));
+        $img['size'] = $this->formatBytes((float)$img['size']);
+        Image::create($img);
+        
+        return response()->json([
+            'message' => 'Image added successfully',
+            'url' => $img['image']
+        ]);
+    }
 }

@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
             $table->string('title');
             $table->text('content')->nullable();
             $table->string('status')->default('Draft');
+            $table->string('type')->default('Page');
             $table->timestamps();
         });
     }

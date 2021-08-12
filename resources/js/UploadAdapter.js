@@ -7,17 +7,16 @@ class UploadAdapter {
 
     async upload() {
         const data = new FormData();
-        data.append("file", await this.loader.file);
+        data.append("image", await this.loader.file);
 
         const res = await window.axios({
             url: this.url,
             method: "POST",
             data,
-            withCredentials: true,
         });
 
         return {
-            default: this.asset + '/' + res.data.url,
+            default: this.asset + '/images/' + res.data.url,
         };
     }
 }
